@@ -1,0 +1,61 @@
+﻿@page
+@model Agenda_UTN.Pages.Contactos.IndexModel
+@{
+    ViewData["Title"] = "Lista de Contactos";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <h2 class="text-info">Lista de Contactos</h2>
+        </div>
+        <div class="col-3">
+            <a class="btn btn-secondary" asp-page="/Contactos/Crear">Crear Nuevo Contacto</a>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    @if (Model.Contactos.Count() > 0)
+    {
+        <table id="tblContactos" class="table table-striped table-bordered" style="width:100%;">
+            <thead>
+                <tr class="text-center">
+                    <!-- ACA PODRIA RECORRER LA FIRST DEFAULT PARA QUE SEA DINAMICO X SI SE AGREGAN COLUMNAS -->
+                    <th>@Html.DisplayNameFor(m => m.Contactos.FirstOrDefault().Id)</th> <!--tags helpers-->
+                    <th>@Html.DisplayNameFor(m => m.Contactos.FirstOrDefault().Nombre)</th><!--FirstOrDefault = nombre de la columna-->
+                    <th>@Html.DisplayNameFor(m => m.Contactos.FirstOrDefault().Telefono)</th>
+                    <th>@Html.DisplayNameFor(m => m.Contactos.FirstOrDefault().Email)</th>
+                    <th>@Html.DisplayNameFor(m => m.Contactos.FirstOrDefault().FechaCreacion)</th>
+                    <th>@Html.DisplayNameFor(m => m.Contactos.FirstOrDefault().Categoria)</th>
+                    <th>Modificar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var contacto in Model.Contactos)
+                {
+                <tr class="text-center">
+                    <td>@Html.DisplayFor(m => contacto.Id)</td>
+                    <td>@Html.DisplayFor(m => contacto.Nombre)</td>
+                    <td>@Html.DisplayFor(m => contacto.Telefono)</td>
+                    <td>@Html.DisplayFor(m => contacto.Email)</td>
+                    <td>@Html.DisplayFor(m => contacto.FechaCreacion)</td>
+                    <td>@Html.DisplayFor(m => contacto.Categoria.Nombre)</td>  
+                    <td>
+                        <a class="btn btn-success " asp-page="../Contactos/Detalle" asp-route-id="@contacto.Id">Detalle</a> <!--ROUTE = pasa el contacto con ese ID-->
+                        <a class="btn btn-warning mx-4" asp-page="../Contactos/Editar" asp-route-id="@contacto.Id">Editar</a>
+                        <a class="btn btn-danger " asp-page="../Contactos/Borrar" asp-route-id="@contacto.Id">Borrar</a>
+                    </td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-primary text-center" role="alert">
+            No hay Contactos
+        </div>
+    }
+</div>

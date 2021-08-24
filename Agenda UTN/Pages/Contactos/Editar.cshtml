@@ -1,0 +1,65 @@
+﻿@page
+@model Agenda_UTN.Pages.Contactos.EditarModel
+@{
+
+    ViewData["Title"] = "Editar un Contacto";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h2 class="text-info">Editar un Contacto</h2>
+
+            <form method="POST">
+
+                <input type="hidden" asp-for="ContactoVm.Contacto.Id" /> <!-- pasa el id del selccionado al OnGet y carga todo magicamente -->
+               
+                <div class="mb-3">
+                    <!-- PORQUE MUESTRA VALIDACION DE CATEGORIA NOMBRE-->
+                    <label asp-for="ContactoVm.Contacto.Nombre" class="col-form-label"></label>
+                    <input asp-for="ContactoVm.Contacto.Nombre" class="form-control" placeholder="Ingresar Nombre" />
+                    <span asp-validation-for="ContactoVm.Contacto.Nombre" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <!-- PORQUE MUESTRA VALIDACION DE CATEGORIA NOMBRE-->
+                    <label asp-for="ContactoVm.Contacto.Email" class="col-form-label"></label>
+                    <input asp-for="ContactoVm.Contacto.Email" class="form-control" placeholder="Ingresar Email" />
+                    <span asp-validation-for="ContactoVm.Contacto.Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <!-- PORQUE MUESTRA VALIDACION DE CATEGORIA NOMBRE-->
+                    <label asp-for="ContactoVm.Contacto.Telefono" class="col-form-label"></label>
+                    <input asp-for="ContactoVm.Contacto.Telefono" class="form-control" placeholder="Ingresar Teléfono" />
+                    <span asp-validation-for="ContactoVm.Contacto.Telefono" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ContactoVm.Contacto.Categoria" class="col-form-label"></label>
+                    <select asp-for="ContactoVm.Contacto.CategoriaId"
+                            asp-items="@(new SelectList(Model.ContactoVm.ListaCategorias,"Id","Nombre"))"
+                            class="form-control">
+                    </select>
+                    <span asp-validation-for="ContactoVm.Contacto.FechaCreacion" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ContactoVm.Contacto.FechaCreacion" class="col-form-label"></label>
+                    <input asp-for="ContactoVm.Contacto.FechaCreacion" class="form-control" />
+                    <span asp-validation-for="ContactoVm.Contacto.FechaCreacion" class="text-danger"></span>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Editar Contacto</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <a asp-page="Index/" class="btn btn-success"> Volver</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" /> <!-- ENVIA PETICIONES SI no cumple ESTA ESTA VALIDACION-->
+}

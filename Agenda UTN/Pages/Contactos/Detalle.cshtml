@@ -1,0 +1,27 @@
+﻿@page
+@model Agenda_UTN.Pages.Contactos.DetalleModel
+@{
+    ViewData["Title"] = "Detalles de un Contacto";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h2 class="text-info">Detalles un Contacto: @Html.DisplayFor(m => m.Contacto.Nombre)</h2>
+            <input type="hidden" asp-for="Contacto.Id" />
+            <ul class="list-group">
+                <li class="list-group-item"> ID: @Html.DisplayFor(m => m.Contacto.Id)</li>
+                <li class="list-group-item"> NOMBRE: @Html.DisplayFor(m => m.Contacto.Nombre)</li>
+                <li class="list-group-item"> EMAIL: @Html.DisplayFor(m => m.Contacto.Email)</li>
+                <li class="list-group-item"> TELÉFONO: @Html.DisplayFor(m => m.Contacto.Telefono)</li>
+                <li class="list-group-item"> CATEGORÍA: @Html.DisplayFor(m => m.Contacto.Categoria.Nombre)</li>
+                <li class="list-group-item"> FECHA DE CREACIÓN: @Html.DisplayFor(m => m.Contacto.FechaCreacion)</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <a asp-page="Index/" class="btn btn-success"> Volver</a>
+        </div>
+    </div>
+</div>
